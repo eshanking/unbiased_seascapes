@@ -6,4 +6,12 @@
 eval "$(/home/esk81/.usr/local/miniconda/bin/conda shell.bash hook)"           
 conda activate breseq
 cd data/day10
-breseq -p -r reference.fasta X12p10_S4_R1.fastq.gz  X12p10_S4_R2.fastq.gz -j 12
+
+for i in {2..12}
+
+do
+    output_dir=/home/esk81/unbiased_seascapes/data/day10/X"$i"
+    mkdir output_dir
+    filename=X"$i"p10_R1.gz 
+    breseq -p -r reference.gbk -r phagemid.gbk -r shv-1.gbk filename -j 12 -l 120 -o output_dir
+done
